@@ -15,7 +15,7 @@
           <el-form >
 
             <el-form-item>
-              <el-input placeholder="请输入账号":prefix-icon="User" style="height: 50px; font-size: 16px;"></el-input>
+              <el-input placeholder="请输入账号(手机号)":prefix-icon="User" style="height: 50px; font-size: 16px;"></el-input>
             </el-form-item>
             <el-form-item>
               <el-input placeholder="请输入密码":prefix-icon="Lock" style="height: 50px; font-size: 16px;"></el-input>
@@ -34,7 +34,7 @@
 
 
           <div class="button-group">
-            <el-button type="" round>返回登录</el-button>
+            <el-button @click="goToLogin"  round>返回登录</el-button>
             <el-button type="primary" round>注册</el-button>
           </div>
         </div>
@@ -45,6 +45,13 @@
 
 <script setup>
 import {House,Bell,Memo,MessageBox,User,SwitchButton,Lock} from '@element-plus/icons-vue'
+import {ElMessage} from 'element-plus'
+import {useRouter} from 'vue-router'
+const router = useRouter()
+
+const goToLogin = () => {
+  router.push('/login')
+}
 </script>
 
 <style scoped>

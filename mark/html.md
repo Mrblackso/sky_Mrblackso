@@ -99,7 +99,7 @@ const router = createRouter({
 export default router
 ```
 
-## 菜单选择&子菜单选择 颜色
+## el-menu菜单选择&子菜单选择 颜色
 
 ```vue
 .el-menu .is-active {
@@ -110,6 +110,56 @@ export default router
   background-color: #c3d3ef !important;
 }
 ```
+
+
+
+## 水平居中
+
+```vue
+justify-content: center;
+```
+
+## 垂直居中
+
+```vue
+ /*align-items: center;     !* 垂直居中 *!*/
+```
+
+
+
+### 边框 颜色
+
+```html
+border: 1px solid rgba(64, 158, 255, 0.3); /* 半透明蓝色边框 */
+```
+
+### :prefix-icon 输入栏前置 图片
+
+```vue
+<el-input placeholder="请输入账号":prefix-icon="User"></el-input>
+```
+
+
+
+### 路由跳转
+
+```vue
+<template>
+  <el-button type="" @click="goToRegister">注册</el-button>
+</template>
+
+<script setup>
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
+const goToRegister = () => {
+  router.push('/register') // 跳转到注册页面
+}
+</script>
+```
+
+
 
 
 
