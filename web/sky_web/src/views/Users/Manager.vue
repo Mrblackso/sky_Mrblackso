@@ -39,7 +39,7 @@
             <el-icon><Avatar /></el-icon>
             个人信息
           </el-menu-item>
-          <el-menu-item>
+          <el-menu-item index="/login">
             <el-icon>
               <SwitchButton/>
             </el-icon>

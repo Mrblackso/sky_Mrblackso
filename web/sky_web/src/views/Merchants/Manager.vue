@@ -42,7 +42,7 @@
             <el-icon><MessageBox /></el-icon>
             数据统计
           </el-menu-item>
-          <el-menu-item>
+          <el-menu-item index="/login">
             <el-icon>
               <SwitchButton/>
             </el-icon>
