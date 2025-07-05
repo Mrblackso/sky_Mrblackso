@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.sky.mapper.LoginMapper">
+
+
+    <select id="existsMerchantByPhone" resultType="java.lang.Boolean">
+        SELECT COUNT(*) > 0 FROM merchant WHERE Phone = #{phone}
+    </select>
+    <select id="findMerchantPassword" resultType="java.lang.String">
+        SELECT Password FROM merchant WHERE Phone = #{phone}
+    </select>
+    <select id="existsUserByPhone" resultType="java.lang.Boolean">
+        SELECT COUNT(*) > 0 FROM user WHERE Phone = #{phone}
+    </select>
+    <select id="findUserPassword" resultType="java.lang.String">
+        select Password from user where Phone= #{phone}
+    </select>
+</mapper>
+
+
+

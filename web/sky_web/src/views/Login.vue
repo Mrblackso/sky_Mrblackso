@@ -67,14 +67,15 @@ const onLogin = () => {
     if (!valid) return
     // 登录逻辑
     try {
-      const response = await axios.post('/login', {
+      const response = await axios.post('http://localhost:8888/login', {
         Phone: form.value.phone,
         Password: form.value.password,
         Role: form.value.role
       })
+
       if (response.data.code === "200") {
         ElMessage.success('登录成功')
-        if(response.data.data.role === "Merchant"){
+        if( form.value.role=== "Merchant"){
           await router.push('/merchant')
         }else{
           await router.push('/user')

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.sky.mapper.RegisterMapper">
+
+    <!-- 判断手机号是否已注册为商家 -->
+    <select id="existsMerchantByPhone" resultType="boolean">
+        SELECT COUNT(*) > 0 FROM merchant WHERE Phone = #{phone}
+    </select>
+
+    <!-- 判断手机号是否已注册为用户 -->
+    <select id="existsUserByPhone" resultType="boolean">
+        SELECT COUNT(*) > 0 FROM user WHERE Phone = #{phone}
+    </select>
+
+    <!-- 插入商家 -->
+    <insert id="insertMerchant" parameterType="com.example.sky.entity.Merchant" useGeneratedKeys="true">
+        INSERT INTO merchant (Phone, Password)
+        VALUES (#{phone}, #{password})
+    </insert>
+
+    <insert id="insertUser" parameterType="com.example.sky.entity.User" useGeneratedKeys="true">
+        INSERT INTO user (Phone, Password)
+        VALUES (#{phone}, #{password})
+    </insert>
+
+</mapper>
+
+
+
