@@ -84,7 +84,7 @@ const onRegister = () => {
     if (!valid) return
 
     try {
-      const response = await axios.post('http://localhost:8888/register', {
+      const response = await axios.post('/api/register', {
         Phone: form.value.phone,
         Password: form.value.password,
         Role: form.value.role

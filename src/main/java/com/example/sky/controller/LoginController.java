@@ -18,12 +18,11 @@ public class LoginController {
     {
         System.out.println(loginDto);
         if(loginDto.getRole().equals("Merchant")){
-            loginService.loginMerchant(loginDto);
+            return loginService.loginMerchant(loginDto);
         }else if(loginDto.getRole().equals("User")){
-            loginService.loginUser(loginDto);
+            return loginService.loginUser(loginDto);
         }else{
             return Result.error("角色类型错误");
         }
-        return Result.success("登录成功");
     }
 }

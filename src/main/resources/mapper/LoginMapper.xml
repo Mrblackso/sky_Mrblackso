@@ -4,18 +4,24 @@
 
 <mapper namespace="com.example.sky.mapper.LoginMapper">
 
-
     <select id="existsMerchantByPhone" resultType="java.lang.Boolean">
-        SELECT COUNT(*) > 0 FROM merchant WHERE Phone = #{phone}
+        SELECT COUNT(*) > 0 FROM merchant WHERE phone = #{phone}
     </select>
+    
     <select id="findMerchantPassword" resultType="java.lang.String">
-        SELECT Password FROM merchant WHERE Phone = #{phone}
+        SELECT password FROM merchant WHERE phone = #{phone}
     </select>
+    
+    <select id="findMerchantByPhone" resultType="com.example.sky.entity.Merchant">
+        SELECT * FROM merchant WHERE phone = #{phone}
+    </select>
+    
     <select id="existsUserByPhone" resultType="java.lang.Boolean">
-        SELECT COUNT(*) > 0 FROM user WHERE Phone = #{phone}
+        SELECT COUNT(*) > 0 FROM user WHERE phone = #{phone}
     </select>
+    
     <select id="findUserPassword" resultType="java.lang.String">
-        select Password from user where Phone= #{phone}
+        SELECT password FROM user WHERE phone = #{phone}
     </select>
 </mapper>
 

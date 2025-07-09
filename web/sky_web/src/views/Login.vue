@@ -67,14 +67,31 @@ const onLogin = () => {
     if (!valid) return
     // 登录逻辑
     try {
-      const response = await axios.post('http://localhost:8888/login', {
+      console.log('发送登录请求:', {
         Phone: form.value.phone,
         Password: form.value.password,
         Role: form.value.role
       })
 
+      const response = await axios.post('/api/login', {
+        Phone: form.value.phone,
+        Password: form.value.password,
+        Role: form.value.role
+      })
+
+      console.log('登录响应:', response.data)
+
       if (response.data.code === "200") {
         ElMessage.success('登录成功')
+
+        // 如果是商户登录，存储商户信息
+        if (form.value.role === "Merchant" && response.data.data) {
+          console.log('存储商户信息:', response.data.data)
+          localStorage.setItem('MerchantInfo', JSON.stringify(response.data.data))
+        } else if (form.value.role === "Merchant") {
+          console.warn('商户登录但未收到商户信息:', response.data)
+        }
+
         if( form.value.role=== "Merchant"){
           await router.push('/merchant')
         }else{
@@ -85,7 +102,7 @@ const onLogin = () => {
       }
     } catch (error) {
       ElMessage.error('异常状态')
-      console.error(error)
+      console.error('登录错误:', error)
     }
   })
 }

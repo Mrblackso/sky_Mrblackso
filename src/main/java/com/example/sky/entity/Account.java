@@ -1,12 +1,11 @@
 package com.example.sky.entity;
 
-
 import lombok.Data;
 
 @Data
 public class Account {
-    String Phone;
-    String Password;
-    String Role;
-    String Nickname;
+    private String phone;
+    private String password;
+    private String role;
+    private String nickname;
 }

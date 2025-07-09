@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.sky.mapper.EmpMapper">
+
+
+    <select id="findByEmpId" resultType="com.example.sky.entity.Emp">
+        SELECT * FROM emp
+        <where>
+            <if test="empName != null and empName != ''">
+                AND EmpName LIKE CONCAT('%', #{empName}, '%')
+            </if>
+            <if test="merchantId != null">
+                AND MerchantId = #{merchantId}
+            </if>
+        </where>
+    </select>
+
+
+
+</mapper>
