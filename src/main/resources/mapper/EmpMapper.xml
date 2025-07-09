@@ -1,6 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.sky.mapper.EmpMapper">
+    <update id="edit">
+        UPDATE emp
+        <set>
+            EmpName = #{empName},
+            EmpPhone = #{empPhone},
+            Sex = #{sex},
+            Position = #{position},
+        </set>
+        WHERE EmpId = #{empId}
+        AND MerchantId = #{merchantId}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM emp
+        WHERE EmpId IN
+        <foreach item="id" collection="empIds" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+        AND MerchantId = #{merchantId}
+    </delete>
+
 
 
     <select id="findByEmpId" resultType="com.example.sky.entity.Emp">
@@ -15,6 +36,8 @@
         </where>
     </select>
 
-
+    <insert id="add">
+        INSERT INTO emp(EmpName, EmpPhone, Sex, Position, MerchantId) VALUES (#{empName}, #{empPhone}, #{sex}, #{position}, #{merchantId})
+    </insert>
 
 </mapper>

@@ -14,4 +14,5 @@ public class SearchDto {
     int pageNum;
     @JsonProperty("pageSize")
     int pageSize;
+
 }
