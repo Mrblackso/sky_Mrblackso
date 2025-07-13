@@ -15,3 +15,5 @@ mybatis:
 logging:
   level:
     com.example.sky.controller: debug
+
+# 文件上传配置
