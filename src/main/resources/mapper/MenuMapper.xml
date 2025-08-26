@@ -1,57 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.sky.mapper.MenuMapper">
-    
-    <!-- 结果映射 -->
-    <resultMap id="MenuResultMap" type="com.example.sky.entity.Menu">
-        <id column="menu_id" property="menuId"/>
-        <result column="menu_name" property="menuName"/>
-        <result column="menu_pic" property="menuPic"/>
-        <result column="menu_description" property="menuDescription"/>
-        <result column="menu_price" property="menuPrice"/>
-    </resultMap>
-    
-    <!-- 查询所有菜品 -->
-    <select id="selectAllMenus" resultMap="MenuResultMap">
-        SELECT * FROM menu ORDER BY menu_id DESC
-    </select>
-    
-    <!-- 根据商家ID查询菜品 -->
-    <select id="selectMenusByMerchantId" resultMap="MenuResultMap">
-        SELECT * FROM menu WHERE merchant_id = #{merchantId} ORDER BY menu_id DESC
-    </select>
-    
-    <!-- 根据ID查询菜品 -->
-    <select id="selectMenuById" resultMap="MenuResultMap">
-        SELECT * FROM menu WHERE menu_id = #{menuId}
-    </select>
-    
-    <!-- 插入新菜品 -->
-    <insert id="insertMenu" parameterType="com.example.sky.entity.Menu" useGeneratedKeys="true" keyProperty="menuId">
-        INSERT INTO menu (menu_name, menu_pic, menu_description, menu_price, merchant_id)
-        VALUES (#{menuName}, #{menuPic}, #{menuDescription}, #{menuPrice}, #{merchantId})
-    </insert>
-    
-    <!-- 更新菜品信息 -->
-    <update id="updateMenu" parameterType="com.example.sky.entity.Menu">
-        UPDATE menu 
-        SET menu_name = #{menuName},
-            menu_pic = #{menuPic},
-            menu_description = #{menuDescription},
-            menu_price = #{menuPrice}
-        WHERE menu_id = #{menuId}
+
+    <update id="edit">
+        UPDATE menu
+        <set>
+            MenuName = #{menuName},
+                menuPic = #{menuPic},
+                menuDescription = #{menuDescription},
+                menuPrice = #{menuPrice},
+        </set>
+        WHERE MenuId = #{menuId}
+        AND MerchantId = #{merchantId}
     </update>
-    
-    <!-- 删除菜品 -->
-    <delete id="deleteMenuById">
-        DELETE FROM menu WHERE menu_id = #{menuId}
+
+    <delete id="delete">
+        DELETE FROM menu
+        WHERE MenuId IN
+        <foreach item="id" collection="menuIds" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+        AND MerchantId = #{merchantId}
     </delete>
-    
-    <!-- 根据菜品名称模糊查询 -->
-    <select id="selectMenusByName" resultMap="MenuResultMap">
-        SELECT * FROM menu 
-        WHERE menu_name LIKE CONCAT('%', #{menuName}, '%')
-        ORDER BY menu_id DESC
+
+
+
+    <select id="findByMenuId" resultType="com.example.sky.entity.Menu">
+        SELECT * FROM menu
+        <where>
+            <if test="menuName != null and menuName != ''">
+                AND MenuName LIKE CONCAT('%', #{menuName}, '%')
+            </if>
+            <if test="merchantId != null">
+                AND MerchantId = #{merchantId}
+            </if>
+        </where>
     </select>
-    
+
+    <insert id="add">
+        INSERT INTO menu(MenuName, MenuPic, MenuDescription, MenuPrice, MerchantId) VALUES (#{menuName}, #{menuPic}, #{menuDescription}, #{menuPrice}, #{merchantId})
+    </insert>
 </mapper> 

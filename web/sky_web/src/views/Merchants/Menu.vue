@@ -245,7 +245,7 @@ const handleDelete = async (menuId) => {
     const res = await axios.delete('/api/menu/delete', {
       data: {
         merchantId: data.merchantId,
-        menuIds // 数组
+        menuIds :menuId// 数组
       }
     });
 

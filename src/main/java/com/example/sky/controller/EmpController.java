@@ -1,6 +1,6 @@
 package com.example.sky.controller;
 
-import com.example.sky.dto.SearchDto;
+import com.example.sky.dto.EmpSearchDto;
 import com.example.sky.dto.EmpDeleteDto;
 import com.example.sky.entity.Emp;
 import com.example.sky.exception.Result;
@@ -15,7 +15,7 @@ public class EmpController {
     private EmpService empService;
 
     @GetMapping("/list")
-    public Result list( SearchDto searchDto){
+    public Result list( EmpSearchDto searchDto){
         return empService.list(searchDto);
     }
     @PostMapping("/add")

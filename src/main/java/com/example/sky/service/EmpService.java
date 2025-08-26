@@ -1,6 +1,6 @@
 package com.example.sky.service;
 
-import com.example.sky.dto.SearchDto;
+import com.example.sky.dto.EmpSearchDto;
 import com.example.sky.dto.EmpDeleteDto;
 import com.example.sky.entity.Emp;
 import com.example.sky.exception.Result;
@@ -18,7 +18,7 @@ public class EmpService {
     @Autowired
     private EmpMapper empMapper;
 
-    public Result list(SearchDto searchDto) {
+    public Result list(EmpSearchDto searchDto) {
         // 开启分页
         PageHelper.startPage(searchDto.getPageNum(), searchDto.getPageSize());
 
